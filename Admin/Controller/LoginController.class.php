@@ -14,8 +14,7 @@ class LoginController extends Controller {
 
 	//验证密码
     public function verify(){
-        $pwd_crypt = \Think\Crypt::encrypt(urlencode('123456'), C('MY_DATA_KEY'));
-        make_general_response($pwd_crypt, '0');
+
     	if( IS_AJAX ){
 
     		$name = I('put.user_name');
