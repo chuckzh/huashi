@@ -19,4 +19,8 @@ return array(
 	'TMPL_L_DELIM'=>'{:',
 	'TMPL_R_DELIM'=>':}',
 
+	'AUTOLOAD_NAMESPACE' => array(
+		'Lib'  => APP_PATH.'Lib',
+	),
+
 );

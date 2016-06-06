@@ -1,4 +1,5 @@
 <?php
+
 define('APP_PATH', './../huashi_port/');
 define('THINK_PATH', realpath('../tp323/ThinkPHP').'/');
 
