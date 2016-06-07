@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
 <link href="__PUBLIC__/css/common/style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript" src="__PUBLIC__/js/common/jquery.js"></script>
+<!--script language="JavaScript" src="__PUBLIC__/js/common/jquery.js"></script-->
+<script language="JavaScript" src="__PUBLIC__/js/common/jquery-1.12.4.min.js"></script>
 
 <script type="text/javascript">
 $(function(){
@@ -47,86 +48,110 @@ $(function(){
 </head>
 
 <body style="background:#f0f9fd;">
-	<div class="lefttop"><span></span>通讯录</div>
 
     <dl class="leftmenu">
 
     <dd>
     <div class="title">
-    <span><img src="__PUBLIC__/images/common/leftico01.png" /></span>管理信息
+    <span><img src="__PUBLIC__/images/common/leftico01.png" /></span>系统管理
     </div>
     	<ul class="menuson">
 
         <li>
             <div class="header">
             <cite></cite>
-            <a href="__URL__/start" target="rightFrame">首页模版</a>
+            <a href="__URL__/start" target="rightFrame">后台首页</a>
             <i></i>
             </div>
-            <ul class="sub-menus">
-            <li><a href="javascript:;">文件管理</a></li>
-            <li><a href="javascript:;">模型信息配置</a></li>
-            <li><a href="javascript:;">基本内容</a></li>
-            <li><a href="javascript:;">自定义</a></li>
-            </ul>
         </li>
-
         <li>
             <div class="header">
             <cite></cite>
-            <a href="__URL__/right" target="rightFrame">数据列表</a>
+            <a href="__URL__/Sysconfig" target="rightFrame">系统设置</a>
             <i></i>
             </div>
-            <ul class="sub-menus">
-            <li><a href="javascript:;">文件数据</a></li>
-            <li><a href="javascript:;">学生数据列表</a></li>
-            <li><a href="javascript:;">我的数据列表</a></li>
-            <li><a href="javascript:;">自定义</a></li>
-            </ul>
         </li>
-
-        <li class="active"><cite></cite><a href="right" target="rightFrame">数据列表</a><i></i></li>
-        <li><cite></cite><a href="__URL__/imgtable" target="rightFrame">图片数据表</a><i></i></li>
-        <li><cite></cite><a href="__URL__/form" target="rightFrame">添加编辑</a><i></i></li>
-        <li><cite></cite><a href="__URL__/imglist" target="rightFrame">图片列表</a><i></i></li>
-        <li><cite></cite><a href="__URL__/imglist1" target="rightFrame">自定义</a><i></i></li>
-        <li><cite></cite><a href="__URL__/tools" target="rightFrame">常用工具</a><i></i></li>
-        <li><cite></cite><a href="__URL__/filelist" target="rightFrame">信息管理</a><i></i></li>
-        <li><cite></cite><a href="__URL__/tab" target="rightFrame">Tab页</a><i></i></li>
-        <li><cite></cite><a href="__URL__/error" target="rightFrame">404页面</a><i></i></li>
         </ul>
     </dd>
 
 
     <dd>
     <div class="title">
-    <span><img src="__PUBLIC__/images/common/leftico02.png" /></span>其他设置
+    <span><img src="__PUBLIC__/images/common/leftico02.png" /></span>教师管理
     </div>
     <ul class="menuson">
-        <li><cite></cite><a href="__URL__/flow" target="rightFrame">流程图</a><i></i></li>
-        <li><cite></cite><a href="__URL__/project" target="rightFrame">项目申报</a><i></i></li>
-        <li><cite></cite><a href="__URL__/search" target="rightFrame">档案列表显示</a><i></i></li>
-        <li><cite></cite><a href="__URL__/tech" target="rightFrame">技术支持</a><i></i></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Teacher_add" target="rightFrame">添加教师</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Teacher_list" target="rightFrame">教师列表</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Teacher_depaadd" target="rightFrame">教师部门添加</a></div><i></i></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Teacher_depalist" target="rightFrame">教师部门列表</a><i></i></div></li>
         </ul>
     </dd>
 
 
-    <dd><div class="title"><span><img src="__PUBLIC__/images/common/leftico03.png" /></span>编辑器</div>
+    <dd><div class="title"><span><img src="__PUBLIC__/images/common/leftico03.png" /></span>学生管理</div>
     <ul class="menuson">
-        <li><cite></cite><a href="#">自定义</a><i></i></li>
-        <li><cite></cite><a href="#">常用资料</a><i></i></li>
-        <li><cite></cite><a href="#">信息列表</a><i></i></li>
-        <li><cite></cite><a href="#">其他</a><i></i></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Student_add" target="rightFrame">添加学生</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Student_list" target="rightFrame">学生列表</a><i></i></div></li>
     </ul>
     </dd>
 
 
-    <dd><div class="title"><span><img src="__PUBLIC__/images/common/leftico04.png" /></span>日期管理</div>
+    <dd><div class="title"><span><img src="__PUBLIC__/images/common/leftico04.png" /></span>班级管理</div>
     <ul class="menuson">
-        <li><cite></cite><a href="#">自定义</a><i></i></li>
-        <li><cite></cite><a href="#">常用资料</a><i></i></li>
-        <li><cite></cite><a href="#">信息列表</a><i></i></li>
-        <li><cite></cite><a href="#">其他</a><i></i></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Class_add" target="rightFrame">添加班级</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Class_list" target="rightFrame">班级列表</a><i></i></div></li>
+    </ul>
+
+    </dd>
+
+    <dd><div class="title"><span><img src="__PUBLIC__/images/common/leftico04.png" /></span>内容管理</div>
+    <ul class="menuson">
+        <li><div class="header"><cite></cite><a href="__URL__/Content_add" target="rightFrame">添加内容</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Content_list" target="rightFrame">内容列表</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Content_classadd" target="rightFrame">添加分类</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Content_classlist" target="rightFrame">分类列表</a><i></i></div></li>
+    </ul>
+
+    </dd>
+
+    <dd><div class="title"><span><img src="__PUBLIC__/images/common/leftico04.png" /></span>校园风光</div>
+    <ul class="menuson">
+        <li><div class="header"><cite></cite><a href="__URL__/IMGlist_add" target="rightFrame">添加信息</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/IMGlist_list" target="rightFrame">信息列表</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/IMGlist_classadd" target="rightFrame">添加分类</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/IMGlist_classlist" target="rightFrame">分类列表</a><i></i></div></li>
+    </ul>
+
+    </dd>
+
+    <dd><div class="title"><span><img src="__PUBLIC__/images/common/leftico04.png" /></span>作品管理</div>
+    <ul class="menuson">
+        <li><div class="header"><cite></cite><a href="__URL__/Work_add" target="rightFrame">添加作品</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Work_list" target="rightFrame">作品列表</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Work_classadd" target="rightFrame">添加作品分类</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Work_classlist" target="rightFrame">作品分类列表</a><i></i></div></li>
+    </ul>
+
+    </dd>
+
+    <dd><div class="title"><span><img src="__PUBLIC__/images/common/leftico04.png" /></span>管理员管理</div>
+    <ul class="menuson">
+        <li><div class="header"><cite></cite><a href="__URL__/Admin_add" target="rightFrame">添加管理员</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Admin_list" target="rightFrame">管理员列表</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Admin_roleadd" target="rightFrame">角色添加</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Admin_rolelist" target="rightFrame">角色列表</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Admin_juradd" target="rightFrame">添加功能</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Admin_jurlist" target="rightFrame">功能列表</a><i></i></div></li>
+    </ul>
+
+    </dd>
+
+    <dd><div class="title"><span><img src="__PUBLIC__/images/common/leftico04.png" /></span>单页管理</div>
+    <ul class="menuson">
+        <li><div class="header"><cite></cite><a href="__URL__/Page_add" target="rightFrame">添加单页</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Page_list" target="rightFrame">单页列表</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Page_classadd" target="rightFrame">添加单页分类</a><i></i></div></li>
+        <li><div class="header"><cite></cite><a href="__URL__/Page_classlist" target="rightFrame">单页分类列表</a><i></i></div></li>
     </ul>
 
     </dd>

@@ -26,6 +26,7 @@ function make_json_response( $data ){
 	// echo json_encode($data);
 	$js = new \Lib\MyUtil\Services_JSON();
 	echo $js->encode( $data );
+	exit;
 }
 
 /**

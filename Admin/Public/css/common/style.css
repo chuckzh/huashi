@@ -91,8 +91,9 @@ h2{font-weight:normal;}
 .topright ul li a{font-size:13px; color:#e9f2f7;}
 .topright ul li a:hover{color:#fff;}
 .topright ul li span{margin-top:2px;float:left;padding-right:3px;}
-.user{height:30px;background:url(../../images/common/ub1.png) repeat-x;clear:both;margin-top:10px;float:right; margin-right:12px;border-radius:30px; behavior:url(js/pie.htc); white-space:nowrap;position:relative;}
-.user span{display:inline-block;padding-right:10px; background:url(../../images/common/user.png) no-repeat 15px 10px; line-height:30px; font-size:14px;color:#b8ceda; padding-left:20px; padding-left:35px;}
+.user{height:30px;background:url(../../images/common/ub1.png) repeat-x;clear:both;margin-top:50px;float:right; margin-right:12px;border-radius:30px; behavior:url(js/pie.htc); white-space:nowrap;position:relative;}
+.user span{display:inline-block;padding-right:10px; background:url(../../images/common/user.png) no-repeat 15px 10px; line-height:30px; font-size:14px;color:#b8ceda; padding-left:30px; padding-left:35px;}
+.user a { padding-right:10px; color:#fff;}
 .user b{display:inline-block;width:20px;height:18px; background:url(../../images/common/msg.png);text-align:center; font-weight:normal; color:#fff;font-size:14px;margin-right:13px; margin-top:7px; line-height:18px;}
 .user i{display:inline-block;margin-right:5px;font-style:normal;line-height:30px; font-size:14px;color:#b8ceda;}
 

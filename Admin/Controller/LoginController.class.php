@@ -1,14 +1,16 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class LoginController extends Controller {
+class LoginController extends \Common\Controller\CommonController {
+
+
 
 	public function index(){
 		$this->display();
 	}
 
 	public function veirfyImg(){
-		$Verify = new \Think\Verify();
+		$Verify = new \Think\Verify( $this->_verifyCodeCfg );
 		$Verify->entry();
 	}
 
@@ -18,13 +20,20 @@ class LoginController extends Controller {
     	if( IS_AJAX ){
 
     		$name = I('put.user_name');
-    		$pwd = I('put.user_password');
+            $pwd = I('put.user_password');
+    		$verify_code = I('put.verify_code');
+
+            $Verify = new \Think\Verify( $this->_verifyCodeCfg );
+            if( !$Verify->check( $verify_code ) ){
+                make_general_response('', '-1', '验证码不正确');
+            }
 
             $pwd_crypt = \Think\Crypt::encrypt($pwd, C('MY_DATA_KEY'));
 
             $map = array( 'user_name' => $name );
-            $field = array('user_password,user_id,last_ip,last_login,actions');
+            $field = array('user_password,id AS user_id,last_ip,last_login,actions');
             $cookie_arr = $user_db = M('AdminUser')->where( $map )->field( $field )->find();
+
             if( $user_db['user_password'] == $pwd_crypt ){
 
                 $cookie_arr['user_name'] = $name;
@@ -37,15 +46,15 @@ class LoginController extends Controller {
 
                 cookie("sd_admin_user", $user_cookie);//存储user_name,user_id,last_ip,last_login 到 cookie
                 session('sd_admin_action', $action_session);//存储到action列表到 session
-
-                make_general_response('', '0');
+                echo '1';
+                make_general_response('', '0','登录成功');
 
             }else if( $user_db['user_password'] == $pwd_crypt ){
-
+                echo '7';
                 make_general_response('', '-1', '密码不正确');
 
             }else if( empty($user_db) ){
-
+                echo '4';
                 make_general_response('', '-1', '用户不存在');
 
             }
