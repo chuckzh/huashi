@@ -19,7 +19,11 @@
 
     $("#login").ajaxForm({
         success:function(ret){
-            alert(ret);
+            if( ret.code == '0' ){
+                window.location.href = "__MODULE__/Index";
+            }else {
+                alert( ret.msg );
+            }
         }
     });
     function getVerifyImg(){

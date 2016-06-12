@@ -149,9 +149,9 @@ class Services_JSON
         $this->_mb_substr            = function_exists('mb_substr');
     }
     // private - cache the mbstring lookup results..
-    var $_mb_strlen = false;
-    var $_mb_substr = false;
-    var $_mb_convert_encoding = false;
+    private $_mb_strlen = false;
+    private $_mb_substr = false;
+    private $_mb_convert_encoding = false;
 
    /**
     * convert a string from one UTF-16 char to one UTF-8 char
@@ -719,7 +719,7 @@ class Services_JSON
                             $obj = array();
                         } else {
                             $stk = array(SERVICES_JSON_IN_OBJ);
-                            $obj = new stdClass();
+                            $obj = new \stdClass();
                         }
                     }
 
@@ -909,7 +909,7 @@ class Services_JSON
 
 if (class_exists('PEAR_Error')) {
 
-    class Services_JSON_Error extends PEAR_Error
+    class Services_JSON_Error extends \PEAR_Error
     {
         function Services_JSON_Error($message = 'unknown error', $code = null,
                                      $mode = null, $options = null, $userinfo = null)

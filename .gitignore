@@ -1,2 +1,3 @@
 Runtime/*
 Common/Conf/db.php
+sftp-config*.json

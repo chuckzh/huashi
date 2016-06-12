@@ -23,7 +23,7 @@ return array(
 		'Lib'  => APP_PATH.'Lib',
 	),
 
-	'DATA_CRYPT_TYPE' => 'Crypt',
+	'DATA_CRYPT_TYPE' => 'Base64',
 	'MY_DATA_KEY' => '6KxkpH6bZX$iR^TQ',
 	'COOKIE_KEY' => 'a#4Z&LONL49V4nmm',
 	'VERIFY_CODE_CFG' => array(

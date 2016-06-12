@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class IndexController extends Controller {
+class IndexController extends CommonAdminController {
     public function index(){
 
     	$this->display();
@@ -35,7 +35,7 @@ class IndexController extends Controller {
 
     public function test($value='')
     {
-        echo json_encode( \Think\Crypt::encrypt('123456', C('MY_DATA_KEY')) );
+        echo crypt('7777', C('MY_DATA_KEY'));
     }
 
 
