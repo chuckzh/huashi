@@ -23,6 +23,10 @@ class LoginController extends CommonAdminController {
             $pwd = I('put.user_password');
     		$verify_code = I('put.verify_code');
 
+            if( empty( $name ) || empty( $pwd ) || empty( $verify_code ) ){
+                make_general_response('', '-7', '请填写完整数据');
+            }
+
             $Verify = new \Think\Verify( $this->_verifyCodeCfg );
             if( !$Verify->check( $verify_code ) ){
                 make_general_response('', '-1', '验证码不正确');

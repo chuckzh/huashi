@@ -2,9 +2,41 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/common/public_style.css">
 <title>添加教师</title>
-</head>
+<script type="text/javascript">
+    $("#login").ajaxForm({
+        success:function(ret){
+            if( ret.code == '0' ){
+                window.location.href = "__MODULE__/Index";
+            }else {
+                alert( ret.msg );
+            }
+        }
+    });
 
+</script>
+</head>
 <body>
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li>添加教师</li>
+    </ul>
+</div>
+<table cellpadding="0" cellspacing="1" class="left">
+    <form>
+	<tr><th>姓名：</th><td><input type="text" name="" value=""></td></tr>
+    <tr><th>职称：</th><td><input type="text" name="" value=""></td></tr>
+    <tr><th>照片：</th><td><input type="text" name="" value=""></td></tr>
+    <tr><th>简介：</th><td><textarea></textarea></td></tr>
+    <tr><th>邮箱：</th><td><input type="text" name="" value=""></td></tr>
+    <tr><th>账号：</th><td><input type="text" name="" value=""></td></tr>
+    <tr><th>密码：</th><td><input type="password" name="" value=""></td></tr>
+    <tr>
+    	<td colspan="2"><input type="submit" class="submit" value="提交保存"></td>
+    </tr>
+    </form>
+</table>
 </body>
 </html>
