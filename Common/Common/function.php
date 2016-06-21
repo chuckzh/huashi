@@ -68,39 +68,27 @@ function data_to_arr(&$input) {
 	}
 }
 
-/**
- * json序列化和反序列化
- * @param  $data 处理的数据
- * @param  integer $type 0:序列化 1:反序列化
- * @return mix
- */
-function my_json($data, $type = 0){
-
-	static $_services;
-
-    if (is_null( $_services )){
-
-        $_services = new \Lib\MyUtil\Services_JSON();
-    }
-
-	if( $type == 0 ){
-		return $_services->encode( $data );
-	}else{
-		return $_services->decode( $data );
+//排序
+function file_cmp_func($a, $b) {
+	$order = I('put.order', '', 'trim');
+	if ($a['is_dir'] && !$b['is_dir']) {
+		return -1;
+	} else if (!$a['is_dir'] && $b['is_dir']) {
+		return 1;
+	} else {
+		if ($order == 'size') {
+			if ($a['filesize'] > $b['filesize']) {
+				return 1;
+			} else if ($a['filesize'] < $b['filesize']) {
+				return -1;
+			} else {
+				return 0;
+			}
+		} else if ($order == 'type') {
+			return strcmp($a['filetype'], $b['filetype']);
+		} else {
+			return strcmp($a['filename'], $b['filename']);
+		}
 	}
-}
-
-/**
- * 生成随机数
- * @param  integer $length 返回字符的长度
- * @return string
- */
-function rand_str($length = 5){
-	$pattern='1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLOMNOPQRSTUVWXYZ';
-	for($i=0;$i<$length;$i++)
-	{
-		$key .= $pattern[mt_rand(0,35)];    //生成php随机数
-	}
-	return $key;
 }
 ?>
