@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class IndexController extends Controller {
+class IndexController extends CommonAdminController {
     public function index(){
 
     	$this->display();
@@ -46,7 +46,7 @@ class IndexController extends Controller {
 
         //目录名
         $dir_name = empty($_GET['dir']) ? '' : trim($_GET['dir']);
-        if (!in_array($dir_name, array('', 'images', 'flash', 'media', 'file'))) {
+        if (!in_array($dir_name, array('', 'image', 'flash', 'media', 'file'))) {
             echo "Invalid Directory name.";
             exit;
         }
@@ -136,9 +136,26 @@ class IndexController extends Controller {
         make_json_response( $result );
     }
 
+    public function saveFile(){
+        $config['rootPath'] = C('UPLOAD_ROOT');
+        $config['savePath'] = C('image');
+        $config['subName'] = date('Ymd');
+        $config['saveName'] = strval( time() ) . rand_str();
+        $config['exts'] = array('jpg', 'gif', 'png', 'jpeg');
+        $config['maxSize'] = 3145728;
+        $upload = new \Think\Upload( $config );
+        $info = $upload->upload();
 
-    public function test()
-    {
+        if( !$info ){
+            $ret = array('error' => 1, 'msg' => $upload->getError() );
+            make_json_response( $ret );
+        }else{
+            $ret = array('error' => 0, 'url' => $info['savepath'] . $info['savename']);
+            make_json_response( $ret );
+        }
+    }
+
+    public function test(){
         echo json_encode( \Think\Crypt::encrypt('123456', C('MY_DATA_KEY')) );
     }
 

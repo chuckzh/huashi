@@ -11,9 +11,4 @@ class CommonController extends Controller {
 		$this->_verifyCodeCfg = C('VERIFY_CODE_CFG');
 	}
 
-	public function lll()
-	{
-		echo 'nnn';
-	}
-
 }

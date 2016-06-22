@@ -16,6 +16,7 @@
                 var editor = K.editor({
                     fileManagerJson : '__MODULE__/Index/fileBrowse',
                     allowFileManager : true,
+                    uploadJson : '__MODULE__/Index/saveFile',
                 });
                 K('#t_photo_file').click(function() {
                     editor.loadPlugin('image', function() {
