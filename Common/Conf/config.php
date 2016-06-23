@@ -12,8 +12,9 @@ return array(
 	'DEFAULT_MODULE'       =>    'Home',
 
 	'TMPL_PARSE_STRING'=>array(
+		'__STYLE__'=> '/Home/Style',
 		'__PUBLIC__'=> '/Admin/Public',
-		'__TMPL__' => MODULE_PATH.'View/'
+		'__TMPL__' => MODULE_PATH.'View/',
 	),
 
 	'TMPL_L_DELIM'=>'{:',
@@ -32,6 +33,6 @@ return array(
 			'fontSize' => 24,
 	),
 
-	'UPLOAD_ROOT' => './data'
+	'UPLOAD_ROOT' => './data/'
 
 );

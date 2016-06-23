@@ -138,7 +138,7 @@ class IndexController extends CommonAdminController {
 
     public function saveFile(){
         $config['rootPath'] = C('UPLOAD_ROOT');
-        $config['savePath'] = C('image');
+        $config['savePath'] = 'image/';
         $config['subName'] = date('Ymd');
         $config['saveName'] = strval( time() ) . rand_str();
         $config['exts'] = array('jpg', 'gif', 'png', 'jpeg');
@@ -151,7 +151,7 @@ class IndexController extends CommonAdminController {
             make_json_response( $ret );
         }else{
             $ret = array('error' => 0, 'url' => $info['savepath'] . $info['savename']);
-            make_json_response( $ret );
+            make_json_response( $info );
         }
     }
 
