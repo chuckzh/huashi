@@ -35,7 +35,7 @@ class IndexController extends CommonAdminController {
 
     public function fileBrowse(){
         $php_path = str_replace( '\\', '/', $_SERVER['DOCUMENT_ROOT'] ) . '/';
-        $php_url = $_SERVER['HTTP_HOST'] . '/';
+        $php_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 
         //根目录路径，可以指定绝对路径，比如 /var/www/attached/
         $root_path = $php_path . 'data/';
@@ -150,11 +150,183 @@ class IndexController extends CommonAdminController {
             $ret = array('error' => 1, 'msg' => $upload->getError() );
             make_json_response( $ret );
         }else{
-            $ret = array('error' => 0, 'url' => $info['savepath'] . $info['savename']);
-            make_json_response( $info );
+            $ret = array('error' => 0, 'url' => '/' . $config['rootPath'] . $info['imgFile']['savepath'] . $info['imgFile']['savename']);
+            make_json_response( $ret );
         }
     }
 
+    public function teacherAdd(){
+        $t_name = I('put.t_name', '', 'trim');
+        $t_job = I('put.t_job', '', 'trim');
+        $t_photo = I('put.t_photo', '', 'trim');
+        $t_introduce = I('put.t_introduce', '', '');
+        $t_email = I('put.t_email', '', '/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/');
+
+        $t_id = I('put.t_id', 0, 'intval');
+
+        if( empty( $t_name ) || empty( $t_photo ) ){
+            make_general_response('', '-1', '照片和姓名不能为空' );
+        }
+
+        $mod = M('teacher');
+        $mod->t_name = $t_name;
+        $mod->t_job = $t_job;
+        $mod->t_photo = $t_photo;
+        $mod->t_introduce = $t_introduce;
+        $mod->t_email = $t_email;
+
+        if( !$t_id ){
+            $ret = $mod->add();
+        }else{
+            $mod->t_id = $t_id;
+            $ret = $mod->save();
+        }
+
+        if( $ret ){
+            make_general_response('', '0', '操作成功');
+        }else {
+            make_general_response('', '-1', '操作失败');
+        }
+    }
+
+    public function teacher_List(){
+        $mod = M('teacher');
+
+        $count = $mod->count();
+        $Page  = new \Think\Page($count, 15);
+        $show = $Page->show();
+
+        $rows = $mod->select();
+        $this->assign('rows', $rows);
+        $this->assign('page', $show);
+
+        $this->display();
+
+    }
+
+    public function teacherDepaAdd(){
+        $d_name = I('put.d_name', '', 'trim');
+        $d_id = I('put.d_id', 0, 'intval');
+
+        $mod = M('teacherDep');
+        $mod->d_name = $d_name;
+
+        if( !$d_id ){
+            $ret = $mod->add();
+        }else{
+            $mod->d_id = $d_id;
+            $ret = $mod->save();
+        }
+
+        if( $ret ){
+            make_general_response('', '0', '操作成功');
+        }else{
+            make_general_response('', '-1', '操作失败');
+        }
+    }
+
+    public function Teacher_depalist(){
+        $mod = M('teacherDep');
+
+        $count = $mod->count();
+        $Page  = new \Think\Page($count, 15);
+        $show = $Page->show();
+
+        $rows = $mod->select();
+        $this->assign('rows', $rows);
+        $this->assign('page', $show);
+
+        $this->display();
+
+    }
+
+    public function studentAdd(){
+        $s_name = I('put.s_name', '', 'trim');
+        $s_no = I('put.s_no', '', 'trim');
+        $s_sex = I('put.s_sex', 0, 'intval');
+        $s_introduce = I('put.s_introduce', '', 'trim');
+        $s_phone = I('put.s_phone', '', 'trim');
+
+        $s_id = I('put.s_id', 0, 'intval');
+
+        if( empty( $s_name ) ){
+            make_general_response('', '-1', '姓名不能为空' );
+        }
+
+        $mod = M('student');
+        $mod->s_name = $s_name;
+        $mod->s_no = $s_no;
+        $mod->s_sex = $s_sex;
+        $mod->s_introduce = $s_introduce;
+        $mod->s_phone = $s_phone;
+
+        if( !$s_id ){
+            $ret = $mod->add();
+        }else{
+            $mod->s_id = $s_id;
+            $ret = $mod->save();
+        }
+
+        if( $ret ){
+            make_general_response('', '0', '操作成功');
+        }else {
+            make_general_response('', '-1', '操作失败');
+        }
+    }
+
+    public function Student_list(){
+        $mod = M('student');
+
+        $count = $mod->count();
+        $Page  = new \Think\Page($count, 15);
+        $show = $Page->show();
+
+        $rows = $mod->select();
+        $this->assign('rows', $rows);
+        $this->assign('page', $show);
+
+        $this->display();
+    }
+
+    public function classAdd(){
+        $class_name = I('put.class_name', '', 'trim');
+
+        $class_id = I('put.class_id', 0, 'intval');
+
+        if( empty( $class_name ) ){
+            make_general_response('', '-1', '名称不能为空' );
+        }
+
+        $mod = M('class');
+        $mod->class_name = $class_name;
+
+        if( !$class_id ){
+            $ret = $mod->add();
+        }else{
+            $mod->class_id = $class_id;
+            $ret = $mod->save();
+        }
+
+        if( $ret ){
+            make_general_response('', '0', '操作成功');
+        }else {
+            make_general_response('', '-1', '操作失败');
+        }
+    }
+
+    public function Class_list(){
+        $mod = M('classList');
+
+        $count = $mod->count();
+        $Page  = new \Think\Page($count, 15);
+        $show = $Page->show();
+
+        $rows = $mod->select();
+        $this->assign('rows', $rows);
+        $this->assign('page', $show);
+
+        $this->display();
+    }
     public function test(){
         echo json_encode( \Think\Crypt::encrypt('123456', C('MY_DATA_KEY')) );
     }

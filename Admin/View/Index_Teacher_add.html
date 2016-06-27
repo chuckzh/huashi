@@ -17,6 +17,7 @@
                     fileManagerJson : '__MODULE__/Index/fileBrowse',
                     allowFileManager : true,
                     uploadJson : '__MODULE__/Index/saveFile',
+                    formatUploadUrl : false,
                 });
                 K('#t_photo_file').click(function() {
                     editor.loadPlugin('image', function() {
@@ -82,7 +83,7 @@
     <li>添加教师</li>
     </ul>
 </div>
-<form name="frmAdd" id="frmAdd" action="">
+<form name="frmAdd" id="frmAdd" action="__URL__/teacherAdd" method="post">
 <table cellpadding="0" cellspacing="1" class="left">
 	<tr><th>姓名：</th><td><input type="text" name="t_name" value=""></td></tr>
     <tr><th>职称：</th><td><input type="text" name="t_job" value=""></td></tr>

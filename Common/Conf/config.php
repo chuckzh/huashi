@@ -33,6 +33,6 @@ return array(
 			'fontSize' => 24,
 	),
 
-	'UPLOAD_ROOT' => './data/'
+	'UPLOAD_ROOT' => 'data/'
 
 );
