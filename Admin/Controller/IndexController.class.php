@@ -315,7 +315,7 @@ class IndexController extends CommonAdminController {
     }
 
     public function Class_list(){
-        $mod = M('classList');
+        $mod = M('class');
 
         $count = $mod->count();
         $Page  = new \Think\Page($count, 15);
@@ -327,6 +327,67 @@ class IndexController extends CommonAdminController {
 
         $this->display();
     }
+
+    public function contentAdd(){
+        $c_title = I('put.c_title', '', 'trim');
+        $c_class_id = I('put.c_class_id', '', 'trim');
+        $c_content = I('put.c_content', '', 'trim');
+
+        $c_id = I('put.c_id', 0, 'intval');
+
+        if( empty( $c_title ) || empty( $c_content ) ){
+            make_general_response('', '-1', '标题和内容不能为空' );
+        }
+
+        $mod = M('contents');
+        $mod->c_title = $c_title;
+        $mod->c_class_id = $c_class_id;
+        $mod->c_content = $c_content;
+
+        if( !$c_id ){
+            $ret = $mod->add();
+        }else{
+            $mod->c_id = $c_id;
+            $ret = $mod->save();
+        }
+
+        if( $ret ){
+            make_general_response('', '0', '操作成功');
+        }else {
+            make_general_response('', '-1', '操作失败');
+        }
+    }
+
+    public function contentClassAdd(){
+        $c_name = I('put.c_name', '', 'trim');
+        $c_parent_id = I('put.c_parent_id', 0, 'intval');
+        $c_order = I('put.c_order', 0, 'intval');
+
+        $c_id = I('put.c_id', 0, 'intval');
+
+        if( empty( $c_title ) || empty( $c_content ) ){
+            make_general_response('', '-1', '标题和内容不能为空' );
+        }
+
+        $mod = M('contentClass');
+        $mod->c_name = $c_name;
+        $mod->c_parent_id = $c_parent_id;
+        $mod->c_order = $c_order;
+
+        if( !$c_id ){
+            $ret = $mod->add();
+        }else{
+            $mod->c_id = $c_id;
+            $ret = $mod->save();
+        }
+
+        if( $ret ){
+            make_general_response('', '0', '操作成功');
+        }else {
+            make_general_response('', '-1', '操作失败');
+        }
+    }
+
     public function test(){
         echo json_encode( \Think\Crypt::encrypt('123456', C('MY_DATA_KEY')) );
     }
