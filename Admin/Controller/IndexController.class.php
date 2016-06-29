@@ -274,7 +274,7 @@ class IndexController extends CommonAdminController {
         }
     }
 
-    public function Student_list(){
+    public function student_list(){
         $mod = M('student');
 
         $count = $mod->count();
