@@ -343,6 +343,7 @@ class IndexController extends CommonAdminController {
         $mod->c_title = $c_title;
         $mod->c_class_id = $c_class_id;
         $mod->c_content = $c_content;
+        $mod->c_time = time();
 
         if( !$c_id ){
             $ret = $mod->add();
@@ -386,6 +387,31 @@ class IndexController extends CommonAdminController {
         }else {
             make_general_response('', '-1', '操作失败');
         }
+    }
+
+    public function sysConfig(){
+        $mod = M('webConfig');
+        $map = array('code' => array( 'in', array('web_name', 'web_ICP') ) );
+
+        $cfg = $mod->where( $map )->getField('code, id, value');
+        $web_name = $web_ICP = null;
+        extract( $cfg );
+
+        $this->assign('web_name', $web_name);
+        $this->assign('web_ICP', $web_ICP);
+
+        $this->dispay();
+    }
+
+    public function sysConfigAdd(){
+        $web_name = I('put.web_name', '', 'trim');
+        $web_ICP = I('put.web_ICP', '', 'trim');
+
+        $web_name_id = I('put.web_name_id', 0, 'intval');
+        $web_ICP_id = I('put.web_ICP_id', 0, 'intval');
+
+        $mod = M('webConfig');
+        $mod->code =
     }
 
     public function test(){
