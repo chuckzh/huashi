@@ -409,6 +409,128 @@ class IndexController extends CommonAdminController {
         $this->display();
     }
 
+    public function Content_classadd(){
+
+        $c_id = 0;
+        $c_name = '';
+        $c_parent_id = 0;
+        $c_order = '';
+
+        $c_id = I('get.c_id', 0, 'intval');
+        if( $c_id ){
+            $ret = M('contentClass')->where( 'c_id = ' . $c_id )->find();
+            $ret && ( extract( $ret ) );
+        }
+
+        $class_arr = $this->contentClassArr( 0, 1 , true);
+        foreach ($class_arr as &$c1) {//1级分类
+            $c1['childs'] = $this->contentClassArr( $c1['c_id'], 2, true);//2级
+            foreach ($c1['childs'] as &$c2) {
+                $c2['childs'] = $this->contentClassArr( $c2['c_id'], 3, true );//3级
+            }
+        }
+
+
+        $this->assign('c_id', $c_id);
+        $this->assign('c_name', $c_name);
+        $this->assign('c_parent_id', $c_parent_id);
+        $this->assign('c_order', $c_order);
+        $this->assign('class_arr', $class_arr);
+
+        $this->display();
+    }
+
+    public function contentClassAdd(){
+        $c_name = I('put.c_name', '', 'trim');
+        $c_parent_id = I('put.c_parent_id', 0, 'intval');
+        $c_order = I('put.c_order', 0, 'intval');
+
+        $c_id = I('put.c_id', 0, 'intval');
+
+        if( empty( $c_name ) ){
+            make_general_response('', '-1', '名称不能为空' );
+        }
+
+        $mod = M('contentClass');
+        $mod->c_name = $c_name;
+        $mod->c_parent_id = $c_parent_id;
+        $mod->c_order = $c_order;
+
+        if( !$c_id ){
+            $ret = $mod->add();
+        }else{
+            $mod->c_id = $c_id;
+            $ret = $mod->save();
+        }
+
+        if( $ret ){
+            make_general_response('', '0', '操作成功');
+        }else {
+            make_general_response('', '-1', '操作失败');
+        }
+    }
+
+    public function Content_classlist(){
+        $mod = M('contentClass');
+
+        $count = $mod->count();
+        $Page  = new \Think\Page($count, 15);
+        $show = $Page->show();
+
+        $rows = $mod->limit($Page->firstRow.','.$Page->listRows)->select();
+        $this->assign('rows', $rows);
+        $this->assign('page', $show);
+
+        $this->display();
+    }
+
+    /**
+     * 获取直接父类的子类
+     * @param  integer $parent_id
+     * @param  integer $level
+     * @param  boolean $nbsp
+     * @return [type]
+     */
+    private function contentClassArr( $parent_id = 0, $level = 1 , $nbsp = false){
+        $arr = array();
+        $mod = M('contentClass');
+        static $classArr;
+        !$classArr && ( $classArr = $mod->select() );
+        foreach ($classArr as $class) {
+            if( $class['c_parent_id'] == $parent_id ){
+                $class['level'] = $level;
+                $nbsp = '';
+                for( $n = 0; $n < pow(2, $level);$n++)
+                    $nbsp .= '&nbsp;';
+                $nbsp && ( $class['c_name'] = $nbsp . $class['c_name']);
+                $arr[] = $class;
+            }
+        }
+
+        return $arr;
+
+    }
+
+    public function Content_add(){
+        $c_id = 0;
+        $c_title = '';
+        $c_class_id = 0;
+        $c_content = '';
+
+        $c_id = I('get.c_id', 0, 'intval');
+        if( $c_id ){
+            $ret = M('contents')->where( 'c_id = ' . $c_id )->find();
+            $ret && ( extract( $ret ) );
+        }
+
+        $this->assign('c_id', $c_id);
+        $this->assign('c_title', $c_title);
+        $this->assign('c_class_id', $c_class_id);
+        $this->assign('c_content', $c_content);
+
+        $this->display();
+    }
+
     public function contentAdd(){
         $c_title = I('put.c_title', '', 'trim');
         $c_class_id = I('put.c_class_id', '', 'trim');
@@ -425,36 +547,6 @@ class IndexController extends CommonAdminController {
         $mod->c_class_id = $c_class_id;
         $mod->c_content = $c_content;
         $mod->c_time = time();
-
-        if( !$c_id ){
-            $ret = $mod->add();
-        }else{
-            $mod->c_id = $c_id;
-            $ret = $mod->save();
-        }
-
-        if( $ret ){
-            make_general_response('', '0', '操作成功');
-        }else {
-            make_general_response('', '-1', '操作失败');
-        }
-    }
-
-    public function contentClassAdd(){
-        $c_name = I('put.c_name', '', 'trim');
-        $c_parent_id = I('put.c_parent_id', 0, 'intval');
-        $c_order = I('put.c_order', 0, 'intval');
-
-        $c_id = I('put.c_id', 0, 'intval');
-
-        if( empty( $c_title ) || empty( $c_content ) ){
-            make_general_response('', '-1', '标题和内容不能为空' );
-        }
-
-        $mod = M('contentClass');
-        $mod->c_name = $c_name;
-        $mod->c_parent_id = $c_parent_id;
-        $mod->c_order = $c_order;
 
         if( !$c_id ){
             $ret = $mod->add();

@@ -35,6 +35,12 @@
         width: 114px;
         height: 46px;
     }
+
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+
+
 </style>
 </head>
 
@@ -58,7 +64,7 @@
     <div class="loginbody">
 
     <span class="systemlogo"></span>
-    <form id="login" name="login" action="__URL__/verify" method="post">
+    <form id="login" name="login" action="__URL__/verify" method="post"  autocomplete="off">
     <div class="loginbox loginbox1">
 
     <ul>
