@@ -155,6 +155,30 @@ class IndexController extends CommonAdminController {
         }
     }
 
+    public function Teacher_add(){
+        $t_id = 0;
+        $t_name = '';
+        $t_photo = '';
+        $t_job = '';
+        $t_email = '';
+        $t_introduce = '';
+
+        $t_id = I('get.t_id', 0, 'intval');
+        if( $t_id ){
+            $ret = M('teacher')->where( 't_id = ' . $t_id )->find();
+            $ret && ( extract( $ret ) );
+        }
+
+        $this->assign('t_id', $t_id);
+        $this->assign('t_name', $t_name);
+        $this->assign('t_photo', $t_photo);
+        $this->assign('t_job', $t_job);
+        $this->assign('t_email', $t_email);
+        $this->assign('t_introduce', $t_introduce);
+
+        $this->display();
+    }
+
     public function teacherAdd(){
         $t_name = I('put.t_name', '', 'trim');
         $t_job = I('put.t_job', '', 'trim');
@@ -196,7 +220,7 @@ class IndexController extends CommonAdminController {
         $Page  = new \Think\Page($count, 15);
         $show = $Page->show();
 
-        $rows = $mod->select();
+        $rows = $mod->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('rows', $rows);
         $this->assign('page', $show);
 
@@ -204,6 +228,22 @@ class IndexController extends CommonAdminController {
 
     }
 
+    public function Teacher_depaadd(){
+
+        $d_id = 0;
+        $d_name = '';
+
+        $d_id = I('get.d_id', 0, 'intval');
+        if( $d_id ){
+            $ret = M('teacherDep')->where( 'd_id = ' . $d_id )->find();
+            $ret && ( extract( $ret ) );
+        }
+
+        $this->assign('d_id', $d_id);
+        $this->assign('d_name', $d_name);
+
+        $this->display();
+    }
     public function teacherDepaAdd(){
         $d_name = I('put.d_name', '', 'trim');
         $d_id = I('put.d_id', 0, 'intval');
@@ -232,12 +272,36 @@ class IndexController extends CommonAdminController {
         $Page  = new \Think\Page($count, 15);
         $show = $Page->show();
 
-        $rows = $mod->select();
+        $rows = $mod->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('rows', $rows);
         $this->assign('page', $show);
 
         $this->display();
 
+    }
+
+    public function Student_add(){
+        $s_id = 0;
+        $s_name = '';
+        $s_no = '';
+        $s_sex = '';
+        $s_phone = '';
+        $s_introduce = '';
+
+        $s_id = I('get.s_id', 0, 'intval');
+        if( $s_id ){
+            $ret = M('student')->where( 's_id = ' . $s_id )->find();
+            $ret && ( extract( $ret ) );
+        }
+
+        $this->assign('s_id', $s_id);
+        $this->assign('s_name', $s_name);
+        $this->assign('s_no', $s_no);
+        $this->assign('s_sex', $s_sex);
+        $this->assign('s_phone', $s_phone);
+        $this->assign('s_introduce', $s_introduce);
+
+        $this->display();
     }
 
     public function studentAdd(){
@@ -281,9 +345,26 @@ class IndexController extends CommonAdminController {
         $Page  = new \Think\Page($count, 15);
         $show = $Page->show();
 
-        $rows = $mod->select();
+        $rows = $mod->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('rows', $rows);
         $this->assign('page', $show);
+
+        $this->display();
+    }
+
+    public function Class_add(){
+
+        $class_id = 0;
+        $class_name = '';
+
+        $class_id = I('get.class_id', 0, 'intval');
+        if( $class_id ){
+            $ret = M('class')->where( 'class_id = ' . $class_id )->find();
+            $ret && ( extract( $ret ) );
+        }
+
+        $this->assign('class_id', $class_id);
+        $this->assign('class_name', $class_name);
 
         $this->display();
     }
@@ -321,7 +402,7 @@ class IndexController extends CommonAdminController {
         $Page  = new \Think\Page($count, 15);
         $show = $Page->show();
 
-        $rows = $mod->select();
+        $rows = $mod->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('rows', $rows);
         $this->assign('page', $show);
 
@@ -400,7 +481,7 @@ class IndexController extends CommonAdminController {
         $this->assign('web_name', $web_name);
         $this->assign('web_ICP', $web_ICP);
 
-        $this->dispay();
+        $this->display();
     }
 
     public function sysConfigAdd(){
@@ -411,7 +492,34 @@ class IndexController extends CommonAdminController {
         $web_ICP_id = I('put.web_ICP_id', 0, 'intval');
 
         $mod = M('webConfig');
-        $mod->code =
+
+        //*****************web_name******************
+        $mod->code = 'web_name';
+        $mod->value = $web_name;
+
+        if( $web_name_id ){
+            $mod->id = $web_name_id;
+            $ret = $mod->save();
+        }else{
+            $ret = $mod->add();
+        }
+        $ret === false && make_general_response('', '-1', '操作失败');
+
+        //*****************web_ICP******************
+        $mod->code = 'web_ICP';
+        $mod->value = $web_ICP;
+
+        if( $web_ICP_id ){
+            $mod->id = $web_ICP_id;
+            $ret = $mod->save();
+        }else{
+            $mod->id = null;
+            $ret = $mod->add();
+        }
+
+        $ret === false && make_general_response('', '-1', '操作失败');
+
+        make_general_response('', '0', '操作成功');
     }
 
     public function test(){

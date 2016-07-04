@@ -85,16 +85,13 @@
 </div>
 <form name="frmAdd" id="frmAdd" action="__URL__/teacherAdd" method="post">
 <table cellpadding="0" cellspacing="1" class="left">
-	<tr><th>姓名：</th><td><input type="text" name="t_name" value=""></td></tr>
-    <tr><th>职称：</th><td><input type="text" name="t_job" value=""></td></tr>
-    <!--tr><th>照片：</th><td><input type="text" class="copy_photo" id="copy_photo" value=""><input type="file" name="t_photo_file" value="" onchange="copyfile(this,'copy_photo');"></td></tr-->
-    <tr><th>照片：</th><td><input type="text" id="t_photo" value=""><input type="button" id="t_photo_file" name="t_photo_file" value="选择图片"></td></tr>
-    <tr><th>简介：</th><td><textarea name="t_introduce"></textarea></td></tr>
-    <tr><th>邮箱：</th><td><input type="text" name="t_email" value=""></td></tr>
-    <!--tr><th>账号：</th><td><input type="text" name="" value=""></td></tr>
-    <tr><th>密码：</th><td><input type="password" name="" value=""></td></tr-->
+	<tr><th>姓名：</th><td><input type="text" name="t_name" value="{$t_name}"></td></tr>
+    <tr><th>职称：</th><td><input type="text" name="t_job" value="{$t_job}"></td></tr>
+    <tr><th>照片：</th><td><input type="text" name="t_photo" id="t_photo" value="{$t_photo}"><input type="button" id="t_photo_file" name="t_photo_file" value="选择图片"><notempty name="t_photo"><a href="{$t_photo}">{$t_photo}</a></notempty></td></tr>
+    <tr><th>简介：</th><td><textarea name="t_introduce">{$t_introduce}</textarea></td></tr>
+    <tr><th>邮箱：</th><td><input type="text" name="t_email" value="{$t_email}"></td></tr>
     <tr>
-    	<td colspan="2"><input type="submit" class="submit" value="提交保存"></td>
+    	<td colspan="2"><input type="hidden" value="{$t_id}" name="t_id"/><input type="submit" class="submit" value="提交保存"></td>
     </tr>
 </table>
 </form>

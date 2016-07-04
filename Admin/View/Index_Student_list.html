@@ -18,83 +18,17 @@
         <th>姓名</th>
         <th>管理</th>
     </tr>
+    <foreach name="rows" item="vo">
     <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
+    	<td><label><input type="checkbox" name="" class="checkid" value="">{$vo.s_id}</label></td>
+        <td>{$vo.s_name}</td>
+        <td width="100"><center><a href="__URL__/Student_add?s_id={$vo.s_id}">编辑</a> | <a href="#">删除</a></center></td>
     </tr>
+    </foreach>
     <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><label><input type="checkbox" name="" class="checkid" value="">000000</label></td>
-        <td>小王</td>
-        <td width="100"><center><a href="__URL__/Student_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td colspan="3" align="left"><label style=" float:left; width:80px; height:20px; line-height:20px; cursor:pointer;"><input type="checkbox" id="selectall" value="" style=" position:relative; top:4px;"><span>全选/反选</span></label><button style="float:left;">批量删除</button><div class="page"><a href="#">首页</a> | <a href="#">上一页</a> | <a href="#">下一页</a> | <a href="#" class="num">1</a> <a href="#" class="num">2</a> <a href="#" class="num">3</a> <a href="#" class="num">4</a> <a href="#" class="num">5</a> | <a href="#">尾页</a></div>
+    	<td colspan="3" align="left"><label style=" float:left; width:80px; height:20px; line-height:20px; cursor:pointer;"><input type="checkbox" id="selectall" value="" style=" position:relative; top:4px;"><span>全选/反选</span></label><button style="float:left;">批量删除</button>
+        <!--div class="page"><a href="#">首页</a> | <a href="#">上一页</a> | <a href="#">下一页</a> | <a href="#" class="num">1</a> <a href="#" class="num">2</a> <a href="#" class="num">3</a> <a href="#" class="num">4</a> <a href="#" class="num">5</a> | <a href="#">尾页</a></div-->
+        {$page}
         </td>
 	</tr>
 </table>

@@ -10,7 +10,7 @@
 	$("#frmAdd").ajaxForm({
         success:function(ret){
             if( ret.code == '0' ){
-                window.location.href = "__URL__/Teacher_list";
+                window.location.href = "__URL__/Sysconfig";
             }else {
                 alert( ret.msg );
             }
@@ -28,8 +28,8 @@
 </div>
 <form name="frmAdd" id="frmAdd" action="__URL__/sysConfigAdd" method="post">
 <table cellpadding="0" cellspacing="1" class="left">
-<tr><th>网站名称：</th><td><input type="text" name="web_name" value="<notempty name=$web_name>{$web_name.value}</notempty>"><input type="hidden" value="<empty name=$web_name>0<else />{$web_name.id}</empty>" name="web_name_id" /></td></tr>
-<tr><th>ICP备案号：</th><td><input type="text" value="<notempty name=$web_ICP>{$web_ICP.value}</notempty>" name="web_ICP"><input type="hidden" value="<empty name=$web_ICP>0<else />{$web_ICP.id}</empty>" name="web_ICP_id" /></td></tr>
+<tr><th>网站名称：</th><td><input type="text" name="web_name" value="<notempty name='web_name'>{$web_name.value}</notempty>"><input type="hidden" value="<empty name='web_name'>0<else />{$web_name.id}</empty>" name="web_name_id" /></td></tr>
+<tr><th>ICP备案号：</th><td><input type="text" value="<notempty name='web_ICP'>{$web_ICP.value}</notempty>" name="web_ICP"><input type="hidden" value="<empty name='web_ICP'>0<else />{$web_ICP.id}</empty>" name="web_ICP_id" /></td></tr>
 <tr><td colspan="2" align="center"><input type="submit" class="submit" value="提交保存"></td></tr>
 </table>
 </form>

@@ -28,12 +28,12 @@
 </div>
 <form name="frmAdd" id="frmAdd" action="__URL__/studentAdd" method="post">
 <table cellpadding="0" cellspacing="1" class="left">
-	<tr><th>学号：</th><td><input type="text" name="s_no" value=""></td></tr>
-    <tr><th>姓名：</th><td><input type="text" name="s_name" value=""></td></tr>
-    <tr><th>性别：</th><td><input type="text" name="s_sex" value=""></td></tr>
-    <tr><th>联系电话：</th><td><input type="text" name="s_phone" value=""></td></tr>
-    <tr><th>学生简介：</th><td><textarea name="s_introduce"></textarea></td></tr>
-    <tr><td colspan="2"><input type="submit" class="submit" value="提交保存"></td></tr>
+	<tr><th>学号：</th><td><input type="text" name="s_no" value="{$s_no}"></td></tr>
+    <tr><th>姓名：</th><td><input type="text" name="s_name" value="{$s_name}"></td></tr>
+    <tr><th>性别：</th><td><input type="text" name="s_sex" value="{$s_sex}"></td></tr>
+    <tr><th>联系电话：</th><td><input type="text" name="s_phone" value="{$s_phone}"></td></tr>
+    <tr><th>学生简介：</th><td><textarea name="s_introduce">{$s_introduce}</textarea></td></tr>
+    <tr><td colspan="2"><input type="hidden" name="s_id" value="{$s_id}"><input type="submit" class="submit" value="提交保存"></td></tr>
 </table>
 </form>
 </body>

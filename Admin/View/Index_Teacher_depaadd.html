@@ -26,10 +26,10 @@
     </ul>
 </div>
 <body>
-<form id="frmAdd" name="frmAdd" action="__URL__/teacherDepaAdd">
+<form id="frmAdd" name="frmAdd" action="__URL__/teacherDepaAdd" method="post">
 <table cellpadding="0" cellspacing="1" class="left">
 	<tr>
-    	<th>部门名称：</th><td><input type="text" name="d_name" value=""></td>
+    	<th>部门名称：</th><td><input type="text" name="d_name" value="{$d_name}"><input type="hidden" name="d_id" value="{$d_id}"></td>
     </tr>
     <tr>
     	<td colspan="2"><input type="submit" name="" class="submit" value="提交保存"></td>

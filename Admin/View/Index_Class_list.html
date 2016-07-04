@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/common/public_style.css">
+<script type="text/javascript" src="__PUBLIC__/js/common/page.js"></script>
 <title>班级列表</title>
 </head>
 <body>
@@ -16,53 +17,15 @@
 	<tr>
     	<th width="50">ID</th><th>班级名称</th><th width="100">管理</th>
     </tr>
+    <foreach name="rows" item="vo">
     <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
+    	<td><center>{$vo.class_id}</center></td><td>{$vo.class_name}</td><td><center><a href="__URL__/Class_add?class_id={$vo.class_id}">编辑</a> | <a href="#">删除</a></center></td>
     </tr>
+    </foreach>
     <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center>1001</center></td><td>美术班</td><td><center><a href="__URL__/Class_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td colspan="3"><div class="page"><a href="#">首页</a> | <a href="#">上一页</a> | <a href="#">下一页</a> | <a href="#" class="num">1</a> <a href="#" class="num">2</a> <a href="#" class="num">3</a> <a href="#" class="num">4</a> <a href="#" class="num">5</a> | <a href="#">尾页</a></div></td>
+    	<td colspan="3"><button class="left">批量删除</button><!--div class="page"><a href="#">首页</a> | <a href="#">上一页</a> | <a href="#">下一页</a> | <a href="#" class="num">1</a> <a href="#" class="num">2</a> <a href="#" class="num">3</a> <a href="#" class="num">4</a> <a href="#" class="num">5</a> | <a href="#">尾页</a></div-->
+        {$page}
+        </td>
     </tr>
 </table>
 </body>
