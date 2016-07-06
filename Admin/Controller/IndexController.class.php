@@ -423,19 +423,23 @@ class IndexController extends CommonAdminController {
         }
 
         $class_arr = $this->contentClassArr( 0, 1 , true);
-        foreach ($class_arr as &$c1) {//1级分类
-            $c1['childs'] = $this->contentClassArr( $c1['c_id'], 2, true);//2级
-            foreach ($c1['childs'] as &$c2) {
-                $c2['childs'] = $this->contentClassArr( $c2['c_id'], 3, true );//3级
+        $class_array = array();
+        foreach ($class_arr as $c1) {//1级分类
+            $c1_childs = $this->contentClassArr( $c1['c_id'], 2, true);//2级
+            $class_array[] = $c1;
+            !empty( $c1_childs ) && ( $class_array = array_merge( $class_array, $c1_childs ) );
+            foreach ($c1_childs as $c2) {
+                // $c2['childs'] = $this->contentClassArr( $c2['c_id'], 3, true );//3级
+                $c2_childs = $this->contentClassArr( $c2['c_id'], 3, true );//3级
+                !empty( $c2_childs ) && ( $class_array = array_merge( $class_array, $c2_childs ) );
             }
         }
-
 
         $this->assign('c_id', $c_id);
         $this->assign('c_name', $c_name);
         $this->assign('c_parent_id', $c_parent_id);
         $this->assign('c_order', $c_order);
-        $this->assign('class_arr', $class_arr);
+        $this->assign('class_arr', $class_array);
 
         $this->display();
     }
@@ -500,7 +504,7 @@ class IndexController extends CommonAdminController {
             if( $class['c_parent_id'] == $parent_id ){
                 $class['level'] = $level;
                 $nbsp = '';
-                for( $n = 0; $n < pow(2, $level);$n++)
+                for( $n = 0; $n < pow(4, $level);$n++)
                     $nbsp .= '&nbsp;';
                 $nbsp && ( $class['c_name'] = $nbsp . $class['c_name']);
                 $arr[] = $class;
