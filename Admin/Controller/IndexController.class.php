@@ -422,15 +422,15 @@ class IndexController extends CommonAdminController {
             $ret && ( extract( $ret ) );
         }
 
-        $class_arr = $this->contentClassArr( 0, 1 , true);
+        $class_arr = $this->contentClassArr( 0, 1 , 1);
         $class_array = array();
         foreach ($class_arr as $c1) {//1级分类
-            $c1_childs = $this->contentClassArr( $c1['c_id'], 2, true);//2级
+            $c1_childs = $this->contentClassArr( $c1['c_id'], 2, 1);//2级
             $class_array[] = $c1;
             !empty( $c1_childs ) && ( $class_array = array_merge( $class_array, $c1_childs ) );
             foreach ($c1_childs as $c2) {
-                // $c2['childs'] = $this->contentClassArr( $c2['c_id'], 3, true );//3级
-                $c2_childs = $this->contentClassArr( $c2['c_id'], 3, true );//3级
+                // $c2['childs'] = $this->contentClassArr( $c2['c_id'], 3, 1 );//3级
+                $c2_childs = $this->contentClassArr( $c2['c_id'], 3, 1 );//3级
                 !empty( $c2_childs ) && ( $class_array = array_merge( $class_array, $c2_childs ) );
             }
         }
@@ -492,10 +492,10 @@ class IndexController extends CommonAdminController {
      * 获取直接父类的子类
      * @param  integer $parent_id
      * @param  integer $level
-     * @param  boolean $nbsp
+     * @param  int 0
      * @return [type]
      */
-    private function contentClassArr( $parent_id = 0, $level = 1 , $nbsp = false){
+    private function contentClassArr( $parent_id = 0, $level = 1 , $nbsp = 0){
         $arr = array();
         $mod = M('contentClass');
         static $classArr;
@@ -503,10 +503,15 @@ class IndexController extends CommonAdminController {
         foreach ($classArr as $class) {
             if( $class['c_parent_id'] == $parent_id ){
                 $class['level'] = $level;
-                $nbsp = '';
-                for( $n = 0; $n < pow(4, $level);$n++)
-                    $nbsp .= '&nbsp;';
-                $nbsp && ( $class['c_name'] = $nbsp . $class['c_name']);
+                $nbsp_str = '';
+                if( $nbsp == 1 ){//空格
+                    for( $n = 0; $n < pow(4, $level);$n++)
+                        $nbsp_str .= '&nbsp;';
+                }else if( $nbsp == 2 ){//横杠
+                    for( $n = 0; $n < pow(4, $level);$n++)
+                        $nbsp_str .= '';
+                }
+                $nbsp && ( $class['c_name'] = $nbsp_str . $class['c_name']);
                 $arr[] = $class;
             }
         }
