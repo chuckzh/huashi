@@ -482,7 +482,20 @@ class IndexController extends CommonAdminController {
         $show = $Page->show();
 
         $rows = $mod->limit($Page->firstRow.','.$Page->listRows)->select();
-        $this->assign('rows', $rows);
+
+        $class_arr = $this->contentClassArr( 0, 1 , 2 );
+        $class_array = array();
+        foreach ($class_arr as $c1) {//1级分类
+            $c1_childs = $this->contentClassArr( $c1['c_id'], 2, 2 );//2级
+            $class_array[] = $c1;
+            !empty( $c1_childs ) && ( $class_array = array_merge( $class_array, $c1_childs ) );
+            foreach ($c1_childs as $c2) {
+                $c2_childs = $this->contentClassArr( $c2['c_id'], 3, 2 );//3级
+                !empty( $c2_childs ) && ( $class_array = array_merge( $class_array, $c2_childs ) );
+            }
+        }
+
+        $this->assign('rows', $class_array);
         $this->assign('page', $show);
 
         $this->display();
@@ -492,7 +505,7 @@ class IndexController extends CommonAdminController {
      * 获取直接父类的子类
      * @param  integer $parent_id
      * @param  integer $level
-     * @param  int 0
+     * @param  int $nbsp
      * @return [type]
      */
     private function contentClassArr( $parent_id = 0, $level = 1 , $nbsp = 0){
@@ -508,8 +521,19 @@ class IndexController extends CommonAdminController {
                     for( $n = 0; $n < pow(4, $level);$n++)
                         $nbsp_str .= '&nbsp;';
                 }else if( $nbsp == 2 ){//横杠
-                    for( $n = 0; $n < pow(4, $level);$n++)
-                        $nbsp_str .= '';
+                    $level3 = $level - 1;
+                    for( $n = 0; $n < pow(4, $level3);$n++){
+                        if( $level3 == 0  ) break;
+                        $n == 0 && $nbsp_str .= '&nbsp;&nbsp;';
+                        $n == 1 && $nbsp_str .= '&nbsp;&nbsp;';
+                        $n == 2 && $nbsp_str .= '|';
+                        $n == 3 && $nbsp_str .= '-';
+                        $n == 4 && $nbsp_str .= '-';
+                        $n == 5 && $nbsp_str .= '-';
+                        $n == 6 && $nbsp_str .= '-';
+                        $n == 7 && $nbsp_str .= '|';
+                        $n == 8 && $nbsp_str .= '-';
+                    }
                 }
                 $nbsp && ( $class['c_name'] = $nbsp_str . $class['c_name']);
                 $arr[] = $class;
