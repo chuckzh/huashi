@@ -16,53 +16,13 @@
 	<tr>
     	<th width="50"><label><input type="checkbox" id="selectall"><span>ID</span></label></th><th>标题</th><th width="100">分类</th><th width="150">添加时间</th><th width="100">管理</th>
     </tr>
+    <foreach name="rows" item="vo">
     <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>1</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
+    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>1</span></label></center></td><td><a href="#">{$vo['c_title']}</a></td><td><center>{$vo['c_class']}</center></td><td><center>{$vo['c_time']|date="Y-m-d",###}</center></td><td><center><a href="__URL__/contentAdd?id={$vo['c_id']}">编辑</a> | <a href="#">删除</a></center></td>
     </tr>
+   </foreach>
     <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>2</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>3</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>4</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>5</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>6</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>7</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>8</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>9</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>10</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>11</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>12</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>13</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>14</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td><center><label><input type="checkbox" class="checkid" name="" value="1"><span>15</span></label></center></td><td><a href="#">这里是信息标题</a></td><td><center>第一个分类</center></td><td><center>2016-01-01 00:00:00</center></td><td><center><a href="__URL__/Content_edit/?id=1001">编辑</a> | <a href="#">删除</a></center></td>
-    </tr>
-    <tr>
-    	<td colspan="5"><button class="left">批量删除</button><div class="page"><a href="#">首页</a> | <a href="#">上一页</a> | <a href="#">下一页</a> | <a href="#" class="num">1</a> <a href="#" class="num">2</a> <a href="#" class="num">3</a> <a href="#" class="num">4</a> <a href="#" class="num">5</a> | <a href="#">尾页</a></div></td>
+    	<td colspan="5"><button class="left">批量删除</button>{$page}</td>
     </tr>
 </table>
 </body>

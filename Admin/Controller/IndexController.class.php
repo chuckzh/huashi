@@ -556,6 +556,20 @@ class IndexController extends CommonAdminController {
             $ret && ( extract( $ret ) );
         }
 
+        $class_arr = $this->contentClassArr( 0, 1 , 1);
+        $class_array = array();
+        foreach ($class_arr as $c1) {//1级分类
+            $c1_childs = $this->contentClassArr( $c1['c_id'], 2, 1);//2级
+            $class_array[] = $c1;
+            !empty( $c1_childs ) && ( $class_array = array_merge( $class_array, $c1_childs ) );
+            foreach ($c1_childs as $c2) {
+                // $c2['childs'] = $this->contentClassArr( $c2['c_id'], 3, 1 );//3级
+                $c2_childs = $this->contentClassArr( $c2['c_id'], 3, 1 );//3级
+                !empty( $c2_childs ) && ( $class_array = array_merge( $class_array, $c2_childs ) );
+            }
+        }
+
+        $this->assign('class_arr', $class_array);
         $this->assign('c_id', $c_id);
         $this->assign('c_title', $c_title);
         $this->assign('c_class_id', $c_class_id);
@@ -595,11 +609,25 @@ class IndexController extends CommonAdminController {
         }
     }
 
+    public function Content_list(){
+        $mod = M('contents');
+
+        $count = $mod->count();
+        $Page  = new \Think\Page($count, 15);
+        $show = $Page->show();
+
+        $rows = $mod->limit($Page->firstRow.','.$Page->listRows)->select();
+
+        $this->assign('rows', $rows);
+        $this->assign('page', $show);
+        $this->display();
+    }
+
     public function sysConfig(){
         $mod = M('webConfig');
         $map = array('code' => array( 'in', array('web_name', 'web_ICP') ) );
 
-        $cfg = $mod->where( $map )->getField('code, id, value');
+        $cfg = $mod->alias()->join('left join ')->where( $map )->getField('code, id, value');
         $web_name = $web_ICP = null;
         extract( $cfg );
 
