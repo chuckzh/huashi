@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/common/public_style.css">
+<script type="text/javascript" src="__PUBLIC__/js/common/page.js"></script>
 <title>学生列表</title>
 </head>
 <body>
@@ -25,7 +26,7 @@
         <td width="100"><center><a href="__URL__/Student_add?s_id={$vo.s_id}">编辑</a> | <a href="#">删除</a></center></td>
     </tr>
     </foreach>
-    <tr>
+    <tr id="tr_page">
     	<td colspan="3" align="left"><label style=" float:left; width:80px; height:20px; line-height:20px; cursor:pointer;"><input type="checkbox" id="selectall" value="" style=" position:relative; top:4px;"><span>全选/反选</span></label><button style="float:left;">批量删除</button>
         <!--div class="page"><a href="#">首页</a> | <a href="#">上一页</a> | <a href="#">下一页</a> | <a href="#" class="num">1</a> <a href="#" class="num">2</a> <a href="#" class="num">3</a> <a href="#" class="num">4</a> <a href="#" class="num">5</a> | <a href="#">尾页</a></div-->
         {$page}

@@ -19,6 +19,9 @@
                     formatUploadUrl : false,
                     afterBlur:function(){
                         this.sync();
+                    },
+                    afterCreate:function(){
+                        this.html('{$c_content|default=\'\'}');
                     }
                 });
 

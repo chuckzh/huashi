@@ -550,7 +550,7 @@ class IndexController extends CommonAdminController {
         $c_class_id = 0;
         $c_content = '';
 
-        $c_id = I('get.c_id', 0, 'intval');
+        $c_id = I('get.cid', 0, 'intval');
         if( $c_id ){
             $ret = M('contents')->where( 'c_id = ' . $c_id )->find();
             $ret && ( extract( $ret ) );
@@ -574,7 +574,6 @@ class IndexController extends CommonAdminController {
         $this->assign('c_title', $c_title);
         $this->assign('c_class_id', $c_class_id);
         $this->assign('c_content', $c_content);
-
         $this->display();
     }
 
@@ -616,7 +615,7 @@ class IndexController extends CommonAdminController {
         $Page  = new \Think\Page($count, 15);
         $show = $Page->show();
 
-        $rows = $mod->limit($Page->firstRow.','.$Page->listRows)->select();
+        $rows = $mod->alias('ct')->join('left join content_class cs ON ct.c_class_id = cs.c_id')->field('ct.*,cs.c_name')->limit($Page->firstRow.','.$Page->listRows)->select();
 
         $this->assign('rows', $rows);
         $this->assign('page', $show);
@@ -627,7 +626,7 @@ class IndexController extends CommonAdminController {
         $mod = M('webConfig');
         $map = array('code' => array( 'in', array('web_name', 'web_ICP') ) );
 
-        $cfg = $mod->alias()->join('left join ')->where( $map )->getField('code, id, value');
+        $cfg = $mod->where( $map )->getField('code, id, value');
         $web_name = $web_ICP = null;
         extract( $cfg );
 
