@@ -674,11 +674,51 @@ class IndexController extends CommonAdminController {
         make_general_response('', '0', '操作成功');
     }
 
-    public function test(){
-        echo json_encode( \Think\Crypt::encrypt('123456', C('MY_DATA_KEY')) );
+    public function fengguang_add(){
+        $this->display();
     }
 
+    public function fengguangAdd(){
 
+    }
 
+    public function fengguang_list(){
+        $this->display();
+    }
 
+    public function fgclass_add(){
+        $this->display();
+    }
+
+    public function fgclassAdd(){
+
+    }
+
+    public function fgclass_list(){
+        $this->display();
+    }
+
+    public function zuopin_add(){
+        $this->display();
+    }
+
+    public function zuopinAdd(){
+
+    }
+
+    public function zuopin_list(){
+        $this->display();
+    }
+
+    public function zpclass_add(){
+        $this->display();
+    }
+
+    public function zpclassAdd(){
+
+    }
+
+    public function zpclass_list(){
+        $this->display();
+    }
 }

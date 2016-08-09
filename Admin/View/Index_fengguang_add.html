@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/common/public_style.css">
+<script language="JavaScript" src="__PUBLIC__/js/common/jquery-1.12.4.min.js"></script>
+<script src="__PUBLIC__/js/plugins/form/jquery.form.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/kindeditor4/kindeditor-all-min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/kindeditor4/lang/zh-CN.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/plugins/kindeditor4/themes/default/default.css">
+<title>添加校园风光</title>
+<script type="text/javascript">
+    var editor;
+    KindEditor.ready(function(K) {
+                editor = K.editor({
+                    allowFileManager : true
+                });
+                K('#image1').click(function() {
+                    editor.loadPlugin('image', function() {
+                        editor.plugin.imageDialog({
+                            imageUrl : K('#url1').val(),
+                            clickFn : function(url, title, width, height, border, align) {
+                                $('.file').after("<span class='img_url'>"+ url + "</span>");
+                                editor.hideDialog();
+                            }
+                        });
+                    });
+                });
+
+
+            });
+
+
+    $("#frmAdd").ajaxForm({
+        success:function(ret){
+            if( ret.code == '0' ){
+                window.location.href = "__URL__/fengguang_list";
+            }else {
+                alert( ret.msg );
+            }
+        }
+    });
+</script>
+<style type="text/css">
+.img_url{
+
+    display:block;
+    height:30px;
+    line-height:30px;
+    margin-top:-35px;
+    margin-left:120px;
+}
+</style>>
+</head>
+<body>
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li>添加校园风光</li>
+    </ul>
+</div>
+<form id="frmAdd" name="frmAdd" action="__URL__/fengguangAdd" method="post">
+<table cellpadding="0" cellspacing="1" class="left">
+	<tr>
+    	<th>标题：</th><td><input type="text" name="title" value="{$c_title}"></td>
+    </tr>
+    <tr>
+    	<th>信息分类：</th>
+        <td><select name="c_class_id">
+        <option value="0">请选择</option>
+            <foreach name="class_arr" item="vo">
+                <if condition="$c_class_id eq $vo['c_id']">
+                <option value="{$vo['c_id']}" selected="true">{$vo['c_name']}</option>
+                <else />
+                <option value="{$vo['c_id']}">{$vo['c_name']}</option>
+                </if>
+            </foreach>
+        </select></td>
+    </tr>
+    <tr>
+    	<th>描述：</th><td><textarea></textarea></td>
+    </tr>
+    <tr>
+    	<th>图片：</th>
+        <td><a href="#" style="display:block; float:left; height:15px; line-height:15px; width:15px; border:1px solid #99D3F5; margin-right:10px; text-align:center; margin-top:7px; margin-left:3px;">+</a>
+            <!--a href="javascript:;" class="file">选择文件
+            <input type="file" name="" id="">
+            </a-->
+            <input type="button" id="image1" class="file" value="选择文件"/>
+            <span class="img_url">XXX/XXX.JPG</span><input type="hidden" name="photos[]" value=""/>
+            <a href="#" style="float:left; height:15px; line-height:15px;text-align:center;">删除</a>
+        </td>
+    </tr>
+    <tr>
+    	<td colspan="2"><input type="submit" name="" class="submit" value="提交保存"></td>
+    </tr>
+</table>
+</form>
+</body>
+</html>
